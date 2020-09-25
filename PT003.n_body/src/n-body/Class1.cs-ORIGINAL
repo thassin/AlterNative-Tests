@@ -5,7 +5,6 @@
 */
 
 using System;
-//using System.Collections.Generic; // the result is the same whether we use an array or a List.
 
 namespace n_body
 {
@@ -33,39 +32,21 @@ namespace n_body
         public NBodySystem()
         {
             bodies = new Body[]{
-		 Body.Sun(),		
-		 Body.Jupiter(),
-		 Body.Saturn(),
-		 Body.Uranus(),
-		 Body.Neptune()		      		      		      
-	      };
-
-Body xx = Body.Saturn();
-double xxXX = xx.vx + xx.vy;
-
-Body yy = bodies[2];
-double yyYY = yy.vx + yy.vy;
+         Body.Sun(),		
+         Body.Jupiter(),
+         Body.Saturn(),
+         Body.Uranus(),
+         Body.Neptune()		      		      		      
+      };
 
             double px = 0.0;
             double py = 0.0;
             double pz = 0.0;
             foreach (Body body in bodies)
             {
-
-double test = body.mass; // this is OK. but the ones below fail because there is an EXPRESSION.
-
-            /*  px += ( body.vx * body.mass ) / 1.0; THE DIVISION IS JUST A TEST...
+                px += body.vx * body.mass;
                 py += body.vy * body.mass;
-                pz += body.vz * body.mass;  */
-
-double tmpM = body.mass;
-double tmpX = body.vx;
-double tmpY = body.vy;
-double tmpZ = body.vz;
-
-                px += tmpX * tmpM;
-                py += tmpY * tmpM;
-                pz += tmpZ * tmpM;
+                pz += body.vz * body.mass;
             }
             bodies[0].OffsetMomentum(px, py, pz);
         }
